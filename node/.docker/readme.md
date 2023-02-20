@@ -16,10 +16,10 @@ ln -sf .docker/docker-compose.yml .
 
 By default it usages the most recent ruby version for docker environment, but if
 you want to run it in any specific version then you can set it up by exporting
-`RUBY_IMAGE` environment variable in your shell:
+`NODE_IMAGE` environment variable in your shell:
 
 ```sh
-export RUBY_IMAGE=ruby:3.0-buster
+export NODE_IMAGE=node:18-alpine
 ```
 
 Once everything is set then you would need to build the development images for
@@ -39,9 +39,6 @@ any of the following commands:
 
 ```sh
 make test
-
-# or
-make rspec
 ```
 
 If you need more control, and you want to do some development on the go then you

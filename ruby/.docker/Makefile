@@ -17,6 +17,14 @@ test: rspec
 ssh:
 	docker-compose run lib bash
 
+.PHONY: install
+install:
+	docker-compose run lib bin/setup
+
+.PHONY: console
+console:
+	docker-compose run lib bin/console
+
 .PHONY: rspec
 rspec:
 	docker-compose run lib bin/rspec ${SPEC_FILE}

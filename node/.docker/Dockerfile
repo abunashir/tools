@@ -1,19 +1,19 @@
-ARG RUBY_IMAGE=ruby:3.1.2-slim
+ARG NODE_IMAGE=node:18-slim
 
-FROM ${RUBY_IMAGE}
+FROM ${NODE_IMAGE}
 
 RUN apt-get update \
     && apt-get install -y build-essential git \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# install latest bundler
-RUN gem install bundler
-
 # Create app directory
 WORKDIR /workspace
 
-# Set bundle path
-ENV BUNDLE_PATH /bundle
+# Copy files
+COPY package.json yarn.lock* package-lock.json* ./
+
+# Install dependencies
+RUN yarn --frozen-lockfile
 
 # Default to console
-CMD ["bin/console"]
+CMD ["yarn", "start"]
