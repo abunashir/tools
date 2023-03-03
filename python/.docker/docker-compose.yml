@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./.docker/Dockerfile
+      target: development
+
+    command: bin/serve-develop
+    ports:
+      - "8080:8080"
+
+    volumes:
+      - .:/app
+      - $HOME/.config/gcloud:/root/.config/gcloud
