@@ -12,9 +12,12 @@ down:
 cleanup:
 	docker-compose down -v
 
-.PHONY: console
-console:
+.PHONY: ssh
+ssh:
 	docker-compose run app bash
+
+.PHONY: console
+console: ssh
 
 .PHONY: db-console
 db-console:
@@ -26,5 +29,5 @@ test:
 
 .PHONY: setup
 setup: 
-	docker-compose build --build-arg NODE_IMAGE=${BASE_IMAGE}
+	docker-compose build --build-arg BASE_IMAGE=${BASE_IMAGE}
 	docker-compose run app gradle build
